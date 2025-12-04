@@ -5,7 +5,7 @@ Official Python SDK for the [Quercle API](https://quercle.dev) - AI-powered web 
 ## Installation
 
 ```bash
-pip install quercle
+uv add quercle
 ```
 
 ## Quick Start
@@ -18,7 +18,7 @@ client = QuercleClient(api_key="qk_...")
 
 # Fetch and analyze a URL
 result = client.fetch(
-    url="https://example.com/article",
+    url="<any-url>",
     prompt="Summarize the main points in bullet points"
 )
 print(result)
@@ -52,7 +52,7 @@ from quercle import QuercleClient
 with QuercleClient() as client:
     # Fetch a URL and analyze content
     result = client.fetch(
-        url="https://example.com",
+        url="<any-url>",
         prompt="Extract the main heading and first paragraph"
     )
     print(result)
@@ -64,8 +64,8 @@ with QuercleClient() as client:
     # Search with domain filtering
     result = client.search(
         "machine learning tutorials",
-        allowed_domains=["*.edu", "arxiv.org"],
-        blocked_domains=["spam.com"]
+        allowed_domains=["*.edu", "*.org"],
+        blocked_domains=["*.xyz"]
     )
     print(result)
 ```
@@ -80,7 +80,7 @@ async def main():
     async with AsyncQuercleClient() as client:
         # Fetch
         result = await client.fetch(
-            url="https://example.com",
+            url="<any-url>",
             prompt="Summarize this page"
         )
         print(result)
@@ -129,7 +129,7 @@ Fetch a URL and analyze its content with AI.
 Search the web and get AI-synthesized answers with citations.
 
 - `query`: The search query
-- `allowed_domains`: Only include results from these domains (e.g., `["*.edu", "example.com"]`)
+- `allowed_domains`: Only include results from these domains (e.g., `["*.edu", "*.gov"]`)
 - `blocked_domains`: Exclude results from these domains
 - Returns: AI-synthesized answer with source citations
 
