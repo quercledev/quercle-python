@@ -159,6 +159,35 @@ except QuercleError as e:
     print(f"API error: {e.status_code} - {e.detail}")
 ```
 
+## Tool Descriptions
+
+Pre-defined descriptions for building AI agent tools:
+
+```python
+from quercle import (
+    # Tool descriptions
+    FETCH_TOOL_DESCRIPTION,
+    SEARCH_TOOL_DESCRIPTION,
+    # Fetch field descriptions
+    FETCH_URL_DESCRIPTION,
+    FETCH_PROMPT_DESCRIPTION,
+    # Search field descriptions
+    SEARCH_QUERY_DESCRIPTION,
+    SEARCH_ALLOWED_DOMAINS_DESCRIPTION,
+    SEARCH_BLOCKED_DOMAINS_DESCRIPTION,
+)
+```
+
+| Constant | Description |
+|----------|-------------|
+| `FETCH_TOOL_DESCRIPTION` | Fetch a web page and analyze its content using AI... |
+| `SEARCH_TOOL_DESCRIPTION` | Search the web and get an AI-synthesized answer with citations... |
+| `FETCH_URL_DESCRIPTION` | The URL to fetch and analyze |
+| `FETCH_PROMPT_DESCRIPTION` | Instructions for how to analyze the page content... |
+| `SEARCH_QUERY_DESCRIPTION` | The search query to find information about. Be specific |
+| `SEARCH_ALLOWED_DOMAINS_DESCRIPTION` | Only include results from these domains... |
+| `SEARCH_BLOCKED_DOMAINS_DESCRIPTION` | Exclude results from these domains... |
+
 ## Requirements
 
 - Python 3.10+
