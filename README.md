@@ -109,7 +109,6 @@ asyncio.run(main())
 ```python
 QuercleClient(
     api_key: str | None = None,      # API key (or use QUERCLE_API_KEY env var)
-    base_url: str | None = None,     # Custom API base URL
     timeout: float | None = None,    # Request timeout in seconds (default: 120)
 )
 ```

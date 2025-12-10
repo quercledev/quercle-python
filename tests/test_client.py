@@ -40,12 +40,6 @@ class TestQuercleClientInit:
             assert exc_info.value.status_code == 401
             assert "API key required" in str(exc_info.value)
 
-    def test_init_custom_base_url(self) -> None:
-        """Client accepts custom base URL."""
-        client = QuercleClient(api_key="qk_test", base_url="https://custom.api.com/")
-        assert client.base_url == "https://custom.api.com"
-        client.close()
-
     def test_init_custom_timeout(self) -> None:
         """Client accepts custom timeout."""
         client = QuercleClient(api_key="qk_test", timeout=30.0)

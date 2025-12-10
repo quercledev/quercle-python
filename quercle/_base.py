@@ -19,19 +19,18 @@ from quercle.exceptions import (
 class BaseQuercleClient:
     """Shared logic for sync and async clients."""
 
-    DEFAULT_BASE_URL = "https://quercle.dev"
+    BASE_URL = "https://quercle.dev"
     DEFAULT_TIMEOUT = 120.0  # seconds
 
     def __init__(
         self,
         api_key: str | None = None,
-        base_url: str | None = None,
         timeout: float | None = None,
     ):
         self.api_key = api_key or os.environ.get("QUERCLE_API_KEY")
         if not self.api_key:
             raise QuercleError("API key required. Get one at https://quercle.dev", 401)
-        self.base_url = (base_url or self.DEFAULT_BASE_URL).rstrip("/")
+        self.base_url = self.BASE_URL
         self.timeout = timeout or self.DEFAULT_TIMEOUT
 
     def _build_headers(self) -> dict[str, str]:

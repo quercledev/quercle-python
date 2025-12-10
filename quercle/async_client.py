@@ -15,10 +15,9 @@ class AsyncQuercleClient(BaseQuercleClient):
     def __init__(
         self,
         api_key: str | None = None,
-        base_url: str | None = None,
         timeout: float | None = None,
     ):
-        super().__init__(api_key=api_key, base_url=base_url, timeout=timeout)
+        super().__init__(api_key=api_key, timeout=timeout)
         self._client = httpx.AsyncClient(timeout=self.timeout)
 
     async def fetch(self, url: str, prompt: str) -> str:
