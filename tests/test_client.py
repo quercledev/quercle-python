@@ -7,7 +7,7 @@ from unittest.mock import MagicMock, patch
 import httpx
 import pytest
 
-from quercle import QuercleClient
+from quercle import BASE_URL, ENDPOINTS, QuercleClient
 from quercle.exceptions import (
     AuthenticationError,
     InsufficientCreditsError,
@@ -49,7 +49,7 @@ class TestQuercleClientInit:
     def test_default_values(self) -> None:
         """Client uses default values when not specified."""
         client = QuercleClient(api_key="qk_test")
-        assert client.base_url == "https://quercle.dev"
+        assert client.base_url == BASE_URL
         assert client.timeout == 120.0
         client.close()
 
@@ -77,7 +77,7 @@ class TestQuercleClientFetch:
             client.fetch("https://example.com", "Test prompt")
             mock_post.assert_called_once()
             call_kwargs = mock_post.call_args
-            assert call_kwargs[0][0] == "https://quercle.dev/api/v1/fetch"
+            assert call_kwargs[0][0] == f"{BASE_URL}{ENDPOINTS['fetch']}"
             assert call_kwargs[1]["json"] == {
                 "url": "https://example.com",
                 "prompt": "Test prompt",

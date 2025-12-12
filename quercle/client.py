@@ -6,7 +6,7 @@ from types import TracebackType
 
 import httpx
 
-from quercle._base import BaseQuercleClient
+from quercle._base import ENDPOINTS, BaseQuercleClient
 
 
 class QuercleClient(BaseQuercleClient):
@@ -32,7 +32,7 @@ class QuercleClient(BaseQuercleClient):
             AI-processed analysis of the page content
         """
         response = self._client.post(
-            f"{self.base_url}/api/v1/fetch",
+            f"{self.base_url}{ENDPOINTS['fetch']}",
             headers=self._build_headers(),
             json={"url": url, "prompt": prompt},
         )
@@ -61,7 +61,7 @@ class QuercleClient(BaseQuercleClient):
         """
         body = self._build_search_body(query, allowed_domains, blocked_domains)
         response = self._client.post(
-            f"{self.base_url}/api/v1/search",
+            f"{self.base_url}{ENDPOINTS['search']}",
             headers=self._build_headers(),
             json=body,
         )

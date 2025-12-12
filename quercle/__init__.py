@@ -1,5 +1,6 @@
 """Quercle Python SDK - AI-powered web search and fetching."""
 
+from quercle._base import BASE_URL, ENDPOINTS
 from quercle.async_client import AsyncQuercleClient
 from quercle.client import QuercleClient
 from quercle.descriptions import (
@@ -20,6 +21,9 @@ from quercle.exceptions import (
 )
 
 __all__ = [
+    # Constants
+    "BASE_URL",
+    "ENDPOINTS",
     # Clients
     "QuercleClient",
     "AsyncQuercleClient",

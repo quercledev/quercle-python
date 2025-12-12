@@ -16,10 +16,16 @@ from quercle.exceptions import (
 )
 
 
+BASE_URL = "https://api.quercle.dev"
+ENDPOINTS = {
+    "fetch": "/v1/fetch",
+    "search": "/v1/search",
+}
+
+
 class BaseQuercleClient:
     """Shared logic for sync and async clients."""
 
-    BASE_URL = "https://quercle.dev"
     DEFAULT_TIMEOUT = 120.0  # seconds
 
     def __init__(
@@ -30,7 +36,7 @@ class BaseQuercleClient:
         self.api_key = api_key or os.environ.get("QUERCLE_API_KEY")
         if not self.api_key:
             raise QuercleError("API key required. Get one at https://quercle.dev", 401)
-        self.base_url = self.BASE_URL
+        self.base_url = BASE_URL
         self.timeout = timeout or self.DEFAULT_TIMEOUT
 
     def _build_headers(self) -> dict[str, str]:

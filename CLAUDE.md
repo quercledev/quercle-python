@@ -24,7 +24,7 @@ This is the core library that framework integrations (LangChain, CrewAI, LlamaIn
 
 ### Endpoints
 
-**POST https://quercle.dev/api/v1/fetch**
+**POST https://api.quercle.dev/v1/fetch**
 
 Fetch a web page and analyze its content using AI. Provide a URL and a prompt describing what information you want to extract or how to analyze the content. The raw HTML is NOT returned - only the AI's analysis based on your prompt.
 
@@ -38,7 +38,7 @@ Fetch a web page and analyze its content using AI. Provide a URL and a prompt de
 {"result": "AI-processed content..."}
 ```
 
-**POST https://quercle.dev/api/v1/search**
+**POST https://api.quercle.dev/v1/search**
 
 Search the web and get an AI-synthesized answer with citations. The response includes the answer and source URLs that can be fetched for further investigation. Optionally filter by allowed or blocked domains.
 
@@ -147,7 +147,7 @@ class QuercleClient(BaseQuercleClient):
             AI-processed analysis of the page content
         """
         response = self._client.post(
-            f"{self.base_url}/api/v1/fetch",
+            f"{self.base_url}/v1/fetch",
             headers=self._build_headers(),
             json={"url": url, "prompt": prompt},
         )
@@ -180,7 +180,7 @@ class QuercleClient(BaseQuercleClient):
             body["blocked_domains"] = blocked_domains
 
         response = self._client.post(
-            f"{self.base_url}/api/v1/search",
+            f"{self.base_url}/v1/search",
             headers=self._build_headers(),
             json=body,
         )
@@ -214,7 +214,7 @@ class AsyncQuercleClient(BaseQuercleClient):
     async def fetch(self, url: str, prompt: str) -> str:
         """Fetch a URL and analyze with AI (async)."""
         response = await self._client.post(
-            f"{self.base_url}/api/v1/fetch",
+            f"{self.base_url}/v1/fetch",
             headers=self._build_headers(),
             json={"url": url, "prompt": prompt},
         )
@@ -236,7 +236,7 @@ class AsyncQuercleClient(BaseQuercleClient):
             body["blocked_domains"] = blocked_domains
 
         response = await self._client.post(
-            f"{self.base_url}/api/v1/search",
+            f"{self.base_url}/v1/search",
             headers=self._build_headers(),
             json=body,
         )

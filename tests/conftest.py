@@ -9,6 +9,8 @@ from unittest.mock import patch
 import httpx
 import pytest
 
+from quercle import BASE_URL
+
 
 @pytest.fixture
 def api_key() -> str:
@@ -32,7 +34,7 @@ def create_mock_response(
     if json_data is None:
         json_data = {"result": "Test result"}
 
-    request = httpx.Request("POST", "https://quercle.dev/api/v1/test")
+    request = httpx.Request("POST", f"{BASE_URL}/v1/test")
     response = httpx.Response(
         status_code=status_code,
         json=json_data,
