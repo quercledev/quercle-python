@@ -15,7 +15,6 @@ from quercle.exceptions import (
     TimeoutError,
 )
 
-
 BASE_URL = "https://api.quercle.dev"
 ENDPOINTS = {
     "fetch": "/v1/fetch",
