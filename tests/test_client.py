@@ -82,7 +82,7 @@ class TestQuercleClientFetch:
                 "url": "https://example.com",
                 "prompt": "Test prompt",
             }
-            assert call_kwargs[1]["headers"]["X-API-Key"] == api_key
+            assert call_kwargs[1]["headers"]["Authorization"] == f"Bearer {api_key}"
         client.close()
 
 

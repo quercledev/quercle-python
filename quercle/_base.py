@@ -41,7 +41,7 @@ class BaseQuercleClient:
     def _build_headers(self) -> dict[str, str]:
         return {
             "Content-Type": "application/json",
-            "X-API-Key": self.api_key,  # type: ignore[dict-item]
+            "Authorization": f"Bearer {self.api_key}",
         }
 
     def _handle_response(self, response: httpx.Response) -> None:
