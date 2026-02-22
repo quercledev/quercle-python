@@ -5,7 +5,7 @@ on:
     branches: [master]
 
 permissions:
-  contents: write
+  contents: read
   id-token: write
 
 jobs:
@@ -35,24 +35,6 @@ jobs:
             echo "exists=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Bump version if exists
-        if: steps.check.outputs.exists == 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          # Get current version and bump patch
-          CURRENT=$(grep -Po '(?<=^version = ")[^"]*' pyproject.toml)
-          IFS='.' read -r major minor patch <<< "$CURRENT"
-          NEW_VERSION="${major}.${minor}.$((patch + 1))"
-
-          # Update pyproject.toml
-          sed -i "s/^version = \"${CURRENT}\"/version = \"${NEW_VERSION}\"/" pyproject.toml
-
-          git add pyproject.toml
-          git commit -m "Bump version to ${NEW_VERSION} [skip ci]"
-          git push
-
       - name: Install dependencies
         run: uv sync --all-extras
 
@@ -68,4 +50,5 @@ jobs:
         run: uv build
 
       - name: Publish to PyPI
+        if: steps.check.outputs.exists != 'true'
         uses: pypa/gh-action-pypi-publish@release/v1
