@@ -19,6 +19,12 @@ response = client.search("latest bun release notes")
 print(response.result)
 ```
 
+## Timeouts
+
+```python
+response = client.search("latest bun release notes", timeout=20.0)
+```
+
 ## Async Usage
 
 ```python
