@@ -1,12 +1,12 @@
 [project]
 name = "quercle"
-version = "0.1.4"
-description = "Official Python SDK for the Quercle API - AI-powered web search and fetching"
+version = "1.0.0"
+description = "Official generated Python SDK for Quercle API."
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.10"
 authors = [{ name = "Quercle", email = "support@quercle.dev" }]
-keywords = ["quercle", "api", "ai", "search", "web", "fetch"]
+keywords = ["quercle", "api", "sdk", "python", "openapi"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -18,16 +18,16 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
+    "attrs>=23.1.0",
     "httpx>=0.27.0",
+    "python-dateutil>=2.8.0",
 ]
 
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0.0",
-    "pytest-asyncio>=0.23.0",
-    "pytest-cov>=4.1.0",
-    "ruff>=0.4.0",
-    "mypy>=1.10.0",
+    "ruff>=0.8.0",
+    "ty",
 ]
 
 [project.urls]
@@ -36,20 +36,20 @@ Documentation = "https://quercle.dev/docs"
 Repository = "https://github.com/quercledev/quercle-python"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling>=1.27.0"]
 build-backend = "hatchling.build"
 
+[tool.hatch.build.targets.wheel]
+packages = ["quercle"]
+
 [tool.pytest.ini_options]
-asyncio_mode = "auto"
-asyncio_default_fixture_loop_scope = "function"
+pythonpath = ["."]
 
 [tool.ruff]
 line-length = 100
 target-version = "py310"
+extend-exclude = ["quercle/api", "quercle/models", "quercle/client.py", "quercle/errors.py", "quercle/types.py"]
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "UP", "B", "SIM"]
-
-[tool.mypy]
-python_version = "3.10"
-strict = true
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
