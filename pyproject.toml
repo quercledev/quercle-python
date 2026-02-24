@@ -1,6 +1,6 @@
 [project]
 name = "quercle"
-version = "1.0.4"
+version = "1.0.5"
 description = "Official generated Python SDK for Quercle API."
 readme = "README.md"
 license = { text = "MIT" }
