@@ -7,6 +7,7 @@ from typing import TypeVar
 
 import httpx
 from attrs import evolve
+
 from .api.api.extract import asyncio_detailed as extract_async_detailed
 from .api.api.extract import sync_detailed as extract_sync_detailed
 from .api.api.fetch import asyncio_detailed as fetch_async_detailed

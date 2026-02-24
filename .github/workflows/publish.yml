@@ -44,7 +44,7 @@ jobs:
       - name: Run lints
         run: |
           uv run ruff check .
-          uv run mypy quercle
+          uv run ty check
 
       - name: Build package
         run: uv build
